@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.home {
+    aspect-ratio: 900/600;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url('./img/wave.svg');
+    
+}
+.home > div {
+    display: flex;
+    justify-content: center;
+}
+.home > div > div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    width: 380px;
+}
+.home > div > div > h1 {
+    font-size: 45px;
+    font-weight: 800;
+    width: 100%;
+}
+.home > div > div > h3 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(121, 121, 121);
+} 
+.home > div> div > a {
+    background-color: black;
+    text-align: center;
+    padding: 15px 0px 15px 0px;
+    border-radius: 40px;
+    font-size: 30px;
+    transition: all 0.3s;
+    font-weight: 700;
+    width: 90%;
+}
+.home > div > div > a:hover {
+    transform: scale(1.1);
+}
+.home > div> img {
+    width: 40%;
+    height: 45vh;
+    object-fit: cover;
+    border-radius: 40px;
+    margin-top: 100px;
+    margin-left: 30px;
+}
+
+@media (max-width: 800px) {
+    .home {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        
+    }
+    .home > div > div {
+        z-index: 3;
+        margin-top: 20px;
+        align-items: center;
+        width: 90%;
+    }
+    .home > div > img {
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        margin: 0;
+        opacity: 0.5;
+        border-radius: 0px;
+        height: 53vh;
+    }
+    .home > div > div > h1 {
+        font-size: 30px;
+        width: 100%;
+        font-weight: 800;
+        text-align: center;
+        
+    }
+    .home > div > div > h3 {
+        font-size: 25px;
+        font-weight: 800;
+        text-align: center;
+    }
+    
+}
+
