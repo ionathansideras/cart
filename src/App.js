@@ -1,7 +1,7 @@
 import React from 'react'
-import { HashRouter, Routes, Route, Link } from "react-router-dom";
+import { HashRouter, Routes, Route, Link, json } from "react-router-dom";
 import './style.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Home from './home';
 import Products from './Products'
 import Info from './info'
@@ -22,9 +22,29 @@ export default function App() {
     {id: 6, src: bed, name: 'Bed', price: 356, count: 1}
   ];
 
-  const [cart, setCart] = useState([]);
+  if(!localStorage.getItem('cart')){
+    localStorage.setItem('cart', JSON.stringify([]))
+  }
+
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
   const [total, setTotal] = useState(0);
   const [all, setAllt] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  },[cart])
+
+  useEffect(() => {
+    let al = cart.reduce((total, i) => {
+      return total + i.count
+    },0)
+    setAllt(al)
+
+    let tot = cart.reduce((total, i) => {
+      return total + (i.price * i.count)
+    },0)
+    setTotal(tot)
+  },[])
 
   function addOne(i){
     if (cart.filter((e)=> e.id === i.id).length > 0){
@@ -42,7 +62,7 @@ export default function App() {
       setAllt(all + 1)
     } 
   }
-  
+
   function removeOne(i){
     if (cart.filter((e)=> e.id === i.id).length > 0){
       setCart(current => current.map(item => {
