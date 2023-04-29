@@ -130,6 +130,7 @@ main > div {
     margin-right: 15px;
     border-radius: 10px;
 }
+
 article{
     padding-bottom: 100px;
 }
@@ -176,6 +177,10 @@ article > h1 {
 .buy {
     background-color: rgb(70, 255, 211);
     transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
 }
 .close {
     background-color: rgb(255, 153, 153);

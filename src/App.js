@@ -11,6 +11,7 @@ import door from './img/door.png'
 import desk from './img/desk.png'
 import chair from './img/chair.png'
 import bed from './img/bed.png'
+import Pay from './pay';
 
 export default function App() {
   const items = [
@@ -132,8 +133,8 @@ export default function App() {
                   <button onClick={() => addOne(i)}>+</button>
                 </div>
               </div>)}
-              <h4>Total: {total}$</h4>
-              <button className='buy'>Buy</button>
+              <h4>Total: {total}$</h4> 
+                <Link className='buy' to="/payment">Buy</Link>
               <button onClick={removeCart} className='close'>Close</button>
         </article>
 
@@ -142,6 +143,7 @@ export default function App() {
           <Route path="/products" element={<Products items={items} cart={cart} setCart={setCart} total={total} setTotal={setTotal} all={all}
           setAllt={setAllt} />} />
           <Route path="/info" element={<Info />} />
+          <Route path="/payment" element={<Pay cart={cart} />} />
         </Routes>
       </HashRouter>
   )
