@@ -1,0 +1,92 @@
+form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+.all {
+    display: flex;
+}
+.divs {
+    display: flex;
+}
+
+.divs > .erdiv {
+    width: 50%;
+}
+
+.erdiv {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    height: 30px;
+    width: 100%;
+}
+
+span {
+    background-color: rgb(247, 63, 63);
+    color: white;
+    border-radius: 0px 0px 20px 20px;
+    display: flex;
+    justify-content: center;
+    width: 101%;
+}
+
+form > button {
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    background-color: rgb(70, 255, 211);
+    border: none;
+    color: white;
+    font-size: 25px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: black;
+}
+
+form > button:hover {
+    background-color: rgb(25, 233, 184);
+}
+
+.cartInfo {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+section {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+section > img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+@media (max-width: 700px) {
+    form {
+        width: 90%;
+    }
+    .all {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .cartInfo {
+        width: 90%;
+    }
+    
+}

@@ -134,7 +134,7 @@ export default function App() {
                 </div>
               </div>)}
               <h4>Total: {total}$</h4> 
-                <Link className='buy' to="/payment">Buy</Link>
+                <Link onClick={removeCart} className='buy' to="/payment">Buy</Link>
               <button onClick={removeCart} className='close'>Close</button>
         </article>
 
@@ -143,7 +143,7 @@ export default function App() {
           <Route path="/products" element={<Products items={items} cart={cart} setCart={setCart} total={total} setTotal={setTotal} all={all}
           setAllt={setAllt} />} />
           <Route path="/info" element={<Info />} />
-          <Route path="/payment" element={<Pay cart={cart} />} />
+          <Route path="/payment" element={<Pay cart={cart} total={total}/>} />
         </Routes>
       </HashRouter>
   )
