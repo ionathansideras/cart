@@ -32,14 +32,13 @@ export default function Pay({cart, total}){
             }
         })
 
-        const check = Object.keys(formValues).filter((i) => {
-            if (formValues[i] === '') {
-                return true
-            }
+        const check = Object.values(formValues).filter((i) => {
+            if (i === '') return true
         })
+        console.log(check)
 
         if (check.length === 0 && count === 1){
-            alert('thank you fr your order')
+            alert('Thank you for your order')
             setFormValues({
                 firstName: '',
                 lastName: '',
