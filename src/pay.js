@@ -17,11 +17,13 @@ export default function Pay({cart, total}){
         adress: '',
         city: '',
         zipCode: ''
-    })
+    }) 
 
+    const [flag, setFlag] = useState(false)
 
     function handleForm(e){
         e.preventDefault();
+        setFlag(true)
         let count = 0;
         const spans = document.querySelectorAll('span')
         spans.forEach((span) => {
@@ -29,8 +31,15 @@ export default function Pay({cart, total}){
                 count ++;
             }
         })
-        if (count == 1){
-            alert('Thank you for your order')
+
+        const check = Object.keys(formValues).filter((i) => {
+            if (formValues[i] === '') {
+                return true
+            }
+        })
+
+        if (check.length === 0 && count === 1){
+            alert('thank you fr your order')
             setFormValues({
                 firstName: '',
                 lastName: '',
@@ -45,6 +54,7 @@ export default function Pay({cart, total}){
                 city: '',
                 zipCode: ''
             })
+            setFlag(false)
         }
     }
 
@@ -52,74 +62,119 @@ export default function Pay({cart, total}){
         setFormValues({...formValues, [item]: e.target.value})
     }
 
-    function handleEmail(){
-        const mail = [...formValues.email]
-        if(mail.includes('@')){
-            return true
+    function Fname(){
+        if (formValues.firstName === '') return <span>required</span>
+    }
+    function Lname(){
+        if (formValues.lastName === '') return <span>required</span>
+    }
+    function Email(){
+        if (!formValues.email.includes('@') || !formValues.email.includes('.com')){
+             return <span>Invalid Email</span>
         }
-        else {
-            return false
+    }
+    function Pnumber(){
+       if (isNaN(formValues.phoneNumber) || formValues.phoneNumber === false) {
+            return <span>Invalid Number</span>
+       }
+    }
+    function Cowner(){
+        if (!/^[a-zA-Z ]+$/.test(formValues.cartOwner) || formValues.cartOwner === false){
+            return <span>Invalid Name</span>
+        }
+    }
+    function Cnumber(){
+        if (!/^[0-9]+$/.test(formValues.cartNumber) || formValues.cartNumber === false){
+            return <span>Invalid Number</span>
+        }
+    }
+    function Mmyy(){
+        if (formValues.mmyy < 2) return <span>Invalid Date</span>
+    }
+    function Cvvcvc(){
+        if (!/^[0-9]+$/.test(formValues.cvvcvc) || formValues.cvvcvc.length < 3){
+            return <span>required</span>
+        }
+    }
+    function Country(){
+        if (!/^[a-zA-Z ]+$/.test(formValues.country) || formValues.country === false){
+            return <span>required</span>
+        }
+    }
+    function Adress(){
+        if (!/^[a-zA-Z0-9 ]+$/.test(formValues.adress) || formValues.adress === false){
+            return <span>required</span>
+        }
+    }
+    function City(){
+        if (!/^[a-zA-Z ]+$/.test(formValues.city) || formValues.city === false){
+            return <span>required</span>
+        }
+    }
+    function Zipcode(){
+        if (!/^[0-9]+$/.test(formValues.zipCode) || formValues.zipCode === false){
+            return <span>required</span>
         }
     }
 
-     return (
+    return (
 
         <div className="all">
             <form onSubmit={(e) => handleForm(e)}>
                 <div className="divs">
                     <div className="erdiv">
                         <input onChange={(e) => newValues(e, 'firstName')} value={formValues.firstName} placeholder="First name"/>
-                        <span>{formValues.firstName == '' ? 'required' : ''}</span>
+                        {flag ? <Fname/> : ''}
                     </div>
                     <div className="erdiv">
                         <input onChange={(e) => newValues(e, 'lastName')} value={formValues.lastName} placeholder="Last name"/>
-                        <span>{formValues.lastName == '' ? 'required' : ''}</span>
+                        {flag ? <Lname/> : ''}
                     </div>
                 </div>
                 <div className="erdiv">
                     <input onChange={(e) => newValues(e, 'email')} value={formValues.email} type="email" placeholder="Email"/>
-                    <span>{handleEmail() == false ? 'Invalid Email' : ''}</span>
+                    {flag ? <Email/> : ''}
                 </div>
                 <div className="erdiv">
                     <input onChange={(e) => newValues(e, 'phoneNumber')} value={formValues.phoneNumber} type="tel" placeholder="Phone number"/>
-                    <span>{isNaN(formValues.phoneNumber) || formValues.phoneNumber == false ? 'Not A number' : ''}</span>
+                    {flag ? <Pnumber/> : ''} 
                 </div>
                 <div className="erdiv">
                     <input onChange={(e) => newValues(e, 'cartOwner')} value={formValues.cartOwner} placeholder="Cart owner"/>
-                    <span>{!/^[a-zA-Z ]+$/.test(formValues.cartOwner) || formValues.cartOwner == false ? 'Invalid name' : ''}</span>
+                    {flag ? <Cowner/> : ''}
                 </div>
                 <div className="erdiv">
                     <input onChange={(e) => newValues(e, 'cartNumber')} value={formValues.cartNumber} type="tel" maxLength="19" placeholder="Cart number"/>
-                    <span>{!/^[0-9]+$/.test(formValues.cartNumber) || formValues.cartNumber == false ? 'Invalid Number' : ''}</span>
+                    {flag ? <Cnumber/> : ''}
                 </div>
 
                 <div className="divs">
                     <div className="erdiv">
                         <input type="month" onChange={(e) => newValues(e, 'mmyy')} value={formValues.mmyy} placeholder="MM/YY"/>                
-                        <span>{formValues.mmyy < 2 ? 'required' : ''}</span>
+                        {flag ? <Mmyy/> : ''}
                     </div>
                     <div className="erdiv">
                         <input onChange={(e) => newValues(e, 'cvvcvc')} value={formValues.cvvcvc} maxLength="3" placeholder="CVV/CVC"/>  
-                        <span>{!/^[0-9]+$/.test(formValues.cvvcvc) || formValues.cvvcvc.length < 3 ? 'required' : ''}</span>
+                        {flag ? <Cvvcvc/> : ''}
                     </div>
                 </div>
                 <div className="erdiv">
                     <input onChange={(e) => newValues(e, 'country')} value={formValues.country} placeholder="Country"/>
-                    <span>{!/^[a-zA-Z ]+$/.test(formValues.country) || formValues.country == false ? 'Invalid country' : ''}</span>
+                    {flag ? <Country/> : ''}
                 </div>
                 <div className="erdiv">
                     <input onChange={(e) => newValues(e, 'adress')} value={formValues.adress} placeholder="Adress"/>   
-                    <span>{!/^[a-zA-Z0-9 ]+$/.test(formValues.adress) || formValues.adress == false ? 'Invalid adress' : ''}</span>
+                    {flag ? <Adress/> : ''}
                 </div>
 
                 <div className="divs">
                     <div className="erdiv">
                         <input onChange={(e) => newValues(e, 'city')} value={formValues.city} placeholder="City"/>
-                        <span>{!/^[a-zA-Z ]+$/.test(formValues.city) || formValues.city == false ? 'Invalid country' : ''}</span>
+                        {flag ? <City/> : ''}
                     </div>
                     <div className="erdiv">
                         <input onChange={(e) => newValues(e, 'zipCode')} value={formValues.zipCode} placeholder="ZIP code"/>
-                        <span>{!/^[0-9]+$/.test(formValues.zipCode) || formValues.zipCode == false ? 'Invalid Zip code' : ''}</span>
+                        {flag ? <Zipcode/> : ''}
                     </div>
                 </div>
                 
