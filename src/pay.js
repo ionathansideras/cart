@@ -35,8 +35,7 @@ export default function Pay({cart, total}){
         const check = Object.values(formValues).filter((i) => {
             if (i === '') return true
         })
-        console.log(check)
-
+        
         if (check.length === 0 && count === 1){
             alert('Thank you for your order')
             setFormValues({
