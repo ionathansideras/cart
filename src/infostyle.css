@@ -5,32 +5,33 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url('./img/wave.svg');
+    background-image: url("./img/wave.svg");
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-}
-.info > div {
+  }
+  .info > div {
     margin: 50px 0px 0px 0px;
     height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.info > div > img {
+  }
+  
+  .info > div > img {
     width: 80px;
     height: 80px;
     object-fit: cover;
     margin: 20px 20px 0px 20px;
-}
-.info > div > h2 {
+  }
+  .info > div > h2 {
     margin-top: 50px;
     text-align: center;
-}
-.info > h3 {
+  }
+  .info > h3 {
     margin-top: 150px;
     text-align: center;
     font-size: 100%;
-}
+  }
+  
