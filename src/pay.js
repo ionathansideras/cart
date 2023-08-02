@@ -176,7 +176,7 @@ export default function Pay({ cart, total }) {
           <input
             onChange={(e) => newValues(e, "cartOwner")}
             value={formValues.cartOwner}
-            placeholder="Cart owner"
+            placeholder="Card owner"
           />
           {flag ? <Cowner /> : ""}
         </div>
@@ -186,7 +186,7 @@ export default function Pay({ cart, total }) {
             value={formValues.cartNumber}
             type="tel"
             maxLength="19"
-            placeholder="Cart number"
+            placeholder="Card number"
           />
           {flag ? <Cnumber /> : ""}
         </div>
