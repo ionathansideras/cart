@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./paystyle.css";
 
 export default function Pay({ cart, total }) {
+  // State to hold the form values for input fields
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -18,8 +19,10 @@ export default function Pay({ cart, total }) {
     zipCode: "",
   });
 
+  // State to keep track of form submission
   const [flag, setFlag] = useState(false);
 
+  // Function to handle form submission
   function handleForm(e) {
     e.preventDefault();
     setFlag(true);
@@ -31,6 +34,7 @@ export default function Pay({ cart, total }) {
       }
     });
 
+    // Check if all required fields are filled and there is only one error
     const check = Object.values(formValues).filter((i) => {
       if (i === "") return true;
     });
@@ -55,10 +59,12 @@ export default function Pay({ cart, total }) {
     }
   }
 
+  // Function to update form values when input fields change
   function newValues(e, item) {
     setFormValues({ ...formValues, [item]: e.target.value });
   }
 
+  // Functions to display error messages for each input field
   function Fname() {
     if (formValues.firstName === "") return <span>required</span>;
   }
@@ -128,6 +134,7 @@ export default function Pay({ cart, total }) {
 
   return (
     <div className="all">
+      {/* Payment form */}
       <form onSubmit={(e) => handleForm(e)}>
         <div className="divs">
           <div className="erdiv">
@@ -240,9 +247,11 @@ export default function Pay({ cart, total }) {
           </div>
         </div>
 
+        {/* Submit button */}
         <button type="submit">Buy</button>
       </form>
 
+      {/* Cart info */}
       <div className="cartInfo">
         {cart.map((i) => {
           return (

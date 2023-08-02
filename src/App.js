@@ -14,6 +14,7 @@ import bed from "./img/bed.png";
 import Pay from "./pay";
 
 export default function App() {
+  // Define an array of items (products) with their details
   const items = [
     { id: 1, src: table, name: "Table", price: 139, count: 1 },
     { id: 2, src: lamp, name: "Lamp", price: 20, count: 1 },
@@ -23,18 +24,18 @@ export default function App() {
     { id: 6, src: bed, name: "Bed", price: 356, count: 1 },
   ];
 
-  if (!localStorage.getItem("cart")) {
-    localStorage.setItem("cart", JSON.stringify([]));
-  }
-
+  // Initialize the cart state and total state using useState
+  // cart state is initialized with the data from local storage
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
   const [total, setTotal] = useState(0);
   const [all, setAllt] = useState(0);
 
+  // Update the cart state in local storage whenever it changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  // Calculate the total price and count of items in the cart using useEffect
   useEffect(() => {
     let al = cart.reduce((total, i) => {
       return total + i.count;
@@ -47,6 +48,7 @@ export default function App() {
     setTotal(tot);
   }, []);
 
+  // Function to add one item to the cart
   function addOne(i) {
     if (cart.filter((e) => e.id === i.id).length > 0) {
       setCart((current) =>
@@ -66,6 +68,7 @@ export default function App() {
     }
   }
 
+  // Function to remove one item from the cart
   function removeOne(i) {
     if (cart.filter((e) => e.id === i.id).length > 0) {
       setCart((current) =>
@@ -89,12 +92,15 @@ export default function App() {
     }
   }
 
+  // Function to open the cart
   function openCart() {
     const cart = document.querySelector(".cart");
     cart.classList.add("cart-on");
     const cover = document.querySelector(".cover");
     cover.classList.add("cover-on");
   }
+
+  // Function to close the cart
   function removeCart() {
     const cart = document.querySelector(".cart");
     cart.classList.remove("cart-on");
@@ -108,6 +114,7 @@ export default function App() {
       <header>
         <h1>Not a shop</h1>
         <nav>
+          {/* Navigation links */}
           <div className="left">
             <div>
               <Link to="/">Home</Link>
@@ -120,6 +127,7 @@ export default function App() {
             </div>
           </div>
 
+          {/* Shopping cart icon */}
           <div className="right">
             <img
               className="imgcart"
@@ -132,8 +140,10 @@ export default function App() {
         </nav>
       </header>
 
+      {/* Shopping cart component */}
       <article className="cart">
         <h1>Shopping Cart</h1>
+        {/* Display items in the cart */}
         {cart.map((i) => (
           <div key={i.id} className="itemscart">
             <div className="cartview">
@@ -148,15 +158,18 @@ export default function App() {
           </div>
         ))}
         <h4>Total: {total}$</h4>
+        {/* Link to the payment page */}
         <Link onClick={removeCart} className="buy" to="/payment">
           Buy
         </Link>
+        {/* Button to close the cart */}
         <button onClick={removeCart} className="close">
           Close
         </button>
       </article>
 
       <Routes>
+        {/* Define routes for different pages */}
         <Route path="/" element={<Home />} />
         <Route
           path="/products"
