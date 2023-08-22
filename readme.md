@@ -34,18 +34,6 @@ Feel free to explore the source code to gain insights into how these concepts ar
 
 The project demonstrates a simple shopping cart website where users can browse products, add items to their cart, and proceed to checkout. By examining the codebase, you can learn how to manage state, handle user interactions, and implement data persistence.
 
-## Contributions
-
-Contributions to this project are welcome! If you'd like to contribute, please follow the guidelines outlined in the [Contributing Guidelines](CONTRIBUTING.md).
-
-## Troubleshooting
-
-If you encounter any issues while setting up or using the project, refer to the [Troubleshooting Guide](docs/troubleshooting.md) for assistance.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ---
 
 Thank you for checking out my Shopping Cart Website project! If you have any questions or feedback, feel free to reach out.
