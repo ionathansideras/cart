@@ -1,5 +1,4 @@
 # Shopping cart website
 
 ## In this project i use Javascrip, React, Css
-## the main consepts of this Project is to show my expirience using some react hooks, local storage
-## and form validation
+the main consepts of this Project is to show my expirience using some react hooks, local storage and form validation
