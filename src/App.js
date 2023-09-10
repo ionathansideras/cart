@@ -26,9 +26,14 @@ export default function App() {
 
   // Initialize the cart state and total state using useState
   // cart state is initialized with the data from local storage
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
+  // if there is nothing in the local storage it returns an empy array
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   const [total, setTotal] = useState(0);
   const [all, setAllt] = useState(0);
+
+  if (cart == null) {
+    console.log('ok');
+  }
 
   // Update the cart state in local storage whenever it changes
   useEffect(() => {
